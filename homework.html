@@ -39,6 +39,9 @@
         .hide {
             display: none;
         }
+        .clickedBooks{
+            background-color: aqua;
+        }
     </style>
   </head>
 
@@ -46,11 +49,11 @@
     <h1>Homework Day4</h1>
     <button class="btn btn-primary" onclick="loadBooks()">Load books</button>
 
-    <input
+    <!-- <input
       type="text"
       placeholder="search book"
       onchange="filterBooks(event)"
-    />
+    /> -->
 
     <div class="container">
       <div class="row"></div>
@@ -99,7 +102,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">${obj.title}</h5>
                                 <p class="card-text">${obj.price}€</p>
-                                <button class="btn btn-info" onclick="addToAnotherList()">Cart</button>
+                                <button class="btn btn-info" onclick="addToAnotherList(event, '${obj.title}')">Cart</button>
                                 <button class="btn btn-danger" onclick="skip(event)" >Skip</button>
                             </div>
                         </div>
@@ -111,8 +114,21 @@
           .catch((error) => console.log(error));
       }
 
-      const addToAnotherList = () =>{
-        console.log("addToAnotherList")
+      const row = document.querySelector(".row")
+      const cart = []
+      
+
+      const addToAnotherList = (event, title) =>{
+          console.log(event.target)
+        event.target.closest(".card").classList.add("clickedBooks")
+        cart.push(title)
+        
+        let li = document.createElement("li")
+        li.innerHTML = `<div class="dropdown-item"
+                    href="#">${title}</div>  `
+        let ul = document.querySelector(".dropdown-menu")
+        ul.appendChild(li)
+        
       }
 
 
