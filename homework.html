@@ -109,7 +109,9 @@
       let btnHide = document.querySelectorAll(".btn-danger")
 
       const skip = () =>{
+          
         for (let i=0; i<btnHide.length; i++){
+            console.log("x")
             btnHide[i].innerText ="hide"
             btnHide[i].addEventListener(`click`, ()=>{
                 btnHide[i].parentElement.parentElement.classList.toggle("hide")
