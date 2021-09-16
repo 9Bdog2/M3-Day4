@@ -56,6 +56,15 @@
       <div class="row"></div>
     </div>
 
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Shopping Cart
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          
+        </div>
+    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -76,8 +85,8 @@
             const row = document.querySelector(".row");
             console.log(row);
 
-            body.forEach(element  => {
-              const obj = body[0];
+            body.forEach((element, i)  => {
+              const obj = body[i];
 
               const col = document.createElement("div");
               col.className = "col-3";
@@ -85,13 +94,13 @@
               const btn = document.createElement("div")
 
               col.innerHTML = `
-                        <div class="card">
+                        <div class="card" >
                             <img src="${obj.img}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">${obj.title}</h5>
                                 <p class="card-text">${obj.price}€</p>
                                 <button class="btn btn-info" onclick="addToAnotherList()">Cart</button>
-                                <button class="btn btn-danger" onclick="skip()">Skip</button>
+                                <button class="btn btn-danger" onclick="skip(event)" >Skip</button>
                             </div>
                         </div>
                     `
@@ -103,20 +112,20 @@
       }
 
       const addToAnotherList = () =>{
-
+        console.log("addToAnotherList")
       }
 
-      let btnHide = document.querySelectorAll(".btn-danger")
 
-      const skip = () =>{
+      const skip = (event) =>{
           
-        for (let i=0; i<btnHide.length; i++){
+        /* for (let i=0; i<btnHide.length; i++){
             console.log("x")
             btnHide[i].innerText ="hide"
             btnHide[i].addEventListener(`click`, ()=>{
                 btnHide[i].parentElement.parentElement.classList.toggle("hide")
             })
-        }
+        } */
+        event.target.closest(".card").remove()
     
     }
 
